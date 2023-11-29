@@ -50,8 +50,19 @@ resource "google_compute_instance_template" "default" {
 
   network_interface {
     network = google_compute_network.vpc3.id
-
   }
+
+  provisioner "file" {
+    source      = "path/to/installation.sh" # Path to your local WordPress installation script
+    destination = "/tmp/installation.sh"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/installation.sh",
+      "/tmp/installation.sh",
+    ]
+  }
+  
   disk {
     source_image = "debian-cloud/debian-10"
     auto_delete  = true
