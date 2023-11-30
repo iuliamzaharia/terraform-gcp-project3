@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"dns-private-zone","Source":"registry.terraform.io/terraform-google-modules/cloud-dns/google","Version":"4.0.0","Dir":".terraform/modules/dns-private-zone"},{"Key":"lb","Source":"registry.terraform.io/GoogleCloudPlatform/lb/google","Version":"2.2.0","Dir":".terraform/modules/lb"}]}

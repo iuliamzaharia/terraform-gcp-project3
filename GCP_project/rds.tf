@@ -1,16 +1,23 @@
-resource "google_sql_database" "database" {
-  name     = "my-database"
-  instance = google_sql_database_instance.instance.name
-}
-
-# See versions at https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#database_version
-resource "google_sql_database_instance" "instance" {
-  name             = "my-database-instance"
-  region           = "us-central1"
-  database_version = "MYSQL_8_0"
+# creates instance
+resource "google_sql_database_instance" "wordpress-db3" {
+  name                = "wordpress-db3-instance"
+  database_version    = "MYSQL_5_7"
+  region              = "us-central1"
+  deletion_protection = "false"
   settings {
     tier = "db-f1-micro"
   }
+}
 
-  deletion_protection = "true"
+# cretes user
+resource "google_sql_user" "users" {
+  name     = "wordpress-db3-user"
+  instance = google_sql_database_instance.wordpress-db3.name
+  host     = "%"
+  password = "changeme"
+}
+#creates database
+resource "google_sql_database" "wordpress" {
+  name     = "wordpress-db3-database"
+  instance = google_sql_database_instance.wordpress-db3.name
 }
