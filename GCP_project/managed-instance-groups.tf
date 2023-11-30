@@ -1,6 +1,17 @@
+resource "google_compute_autoscaler" "foobar" {
+  name   = "my-autoscaler"
+  zone   = "us-central1-f"
+  target = google_compute_instance_group_manager.my-igm.id
+
+  autoscaling_policy {
+    max_replicas    = 5
+    min_replicas    = 1
+    cooldown_period = 60
+  }
+}
+
 
 #creating a machine template so the autoscaling knows what type of machine to work with.
-
 resource "google_compute_instance_template" "compute-engine" {
   depends_on = [
     google_sql_database_instance.wordpress-db3,
