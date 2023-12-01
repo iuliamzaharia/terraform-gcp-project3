@@ -5,6 +5,8 @@
 4. Iulia Zaharia
 5. Maftuna Tojiboeva
 6. Xavier Martinez
+
+Project Manager : Iulia Zaharia
 # _GCP_
 ## _Step1_
 _Build  terraform module  for a Three-Tier application on GCP:_
