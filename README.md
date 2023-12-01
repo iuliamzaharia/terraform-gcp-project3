@@ -16,11 +16,10 @@ _Build  terraform module  for a Three-Tier application on GCP:_
 
 #### Usage
 ```
-module "project" {
-  source  = "iuliamzaharia/project/gcp"
-  version = "0.0.3"
+module "project3" {
+  source  = "iuliamzaharia/project3/gcp"
+  version = "0.0.1"
 }
-
 ```
 - _Variables_
 #### Usage
