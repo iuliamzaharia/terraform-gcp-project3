@@ -17,19 +17,14 @@ wget https://www.free-css.com/assets/files/free-css-templates/download/page296/b
 unzip browny-v1.0.zip
 mv browny-v1.0/* /var/www/html/
 
-# Install and configure MariaDB
-sudo yum install mariadb mariadb-server -y
-sudo systemctl start mariadb
-sudo systemctl enable mariadb
+# Install Apache and MySQL
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
 
-# Secure MariaDB installation
-mysql_secure_installation <<EOF
-n
-y
-y
-y
-y
-EOF
+sudo yum install mysql-server -y
+sudo systemctl start mysqld
+sudo systemctl enable mysqld
 
 # Install PHP 7.3
 sudo yum install epel-release yum-utils -y
