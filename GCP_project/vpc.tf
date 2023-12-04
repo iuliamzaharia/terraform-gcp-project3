@@ -17,5 +17,5 @@ resource "google_compute_firewall" "firewall" {
     ports    = ["22", "80", "3306", "443"]
   }
 
-  source_ranges = ["0.0.0.0/0"] 
+  source_ranges = ["0.0.0.0/0"]
 }
