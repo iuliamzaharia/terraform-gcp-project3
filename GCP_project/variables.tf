@@ -11,7 +11,7 @@ variable "db_password" {
 
 variable "project_name" {
   type        = string
-  default     = "hnmxcjmmxcqwncva"
+  default     = "yevaysmksiiywuxn"
   description = "enter your project name"
 }
 

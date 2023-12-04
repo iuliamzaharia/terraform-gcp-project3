@@ -19,7 +19,7 @@ resource "google_compute_instance_template" "compute-engine" {
   name                    = "my-instance-template"
   machine_type            = "e2-medium"
   can_ip_forward          = false
-  project                 = "hnmxcjmmxcqwncva"
+  project                 = "yevaysmksiiywuxn"
   metadata_startup_script = file("${path.module}/installation.sh")
 
 
@@ -39,7 +39,7 @@ resource "google_compute_instance_template" "compute-engine" {
 
 resource "google_compute_target_pool" "foobar" {
   name    = "my-target-pool"
-  project = "hnmxcjmmxcqwncva"
+  project = "yevaysmksiiywuxn"
   region  = "us-central1"
 }
 
@@ -47,7 +47,7 @@ resource "google_compute_target_pool" "foobar" {
 resource "google_compute_instance_group_manager" "my-igm" {
   name    = "instance-group-manager"
   zone    = "us-central1-f"
-  project = "hnmxcjmmxcqwncva"
+  project = "yevaysmksiiywuxn"
   version {
     instance_template = google_compute_instance_template.compute-engine.self_link
     name              = "primary"

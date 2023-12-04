@@ -32,7 +32,7 @@ rm -rf /var/www/html/*
 mv wordpress/* /var/www/html/
 chown -R apache:apache /var/www/html
 # Configure wp-config.php with the database details
-sed -i -e "s/database_name_here/wordpress/" /var/www/html/wp-config.php
+sed -i -e "s/database_name_here/wordpress-db3-instance/" /var/www/html/wp-config.php
 sed -i -e "s/username_here/wordpress-db3-user/" /var/www/html/wp-config.php
 sed -i -e "s/password_here/changeme/" /var/www/html/wp-config.php
 sed -i -e "s/localhost/${google_sql_database_instance.wordpress-db3.ip_address.0.ip_address}/" /var/www/html/wp-config.php 
