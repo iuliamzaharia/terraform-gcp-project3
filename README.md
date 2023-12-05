@@ -18,7 +18,7 @@ _Build  terraform module  for a Three-Tier application on GCP:_
 ```
 module "project3" {
   source  = "iuliamzaharia/project3/gcp"
-  version = "0.0.1"
+  version = "0.0.2"
 }
 ```
 - _Variables_
@@ -37,9 +37,10 @@ variable "db_password" {
 
 variable "project_name" {
   type        = string
-  default     = "hnmxcjmmxcqwncva"
+  default     = "yevaysmksiiywuxn"
   description = "enter your project name"
 }
+
 ```
 - _Firewall_
 #### Usage
@@ -89,7 +90,7 @@ resource "google_compute_instance_template" "compute-engine" {
   name                    = "my-instance-template"
   machine_type            = "e2-medium"
   can_ip_forward          = false
-  project                 = "hnmxcjmmxcqwncva"
+  project                 = "yevaysmksiiywuxn"
   metadata_startup_script = file("${path.module}/installation.sh")
 
 
@@ -109,7 +110,7 @@ resource "google_compute_instance_template" "compute-engine" {
 
 resource "google_compute_target_pool" "foobar" {
   name    = "my-target-pool"
-  project = "hnmxcjmmxcqwncva"
+  project = "yevaysmksiiywuxn"
   region  = "us-central1"
 }
 
@@ -117,7 +118,7 @@ resource "google_compute_target_pool" "foobar" {
 resource "google_compute_instance_group_manager" "my-igm" {
   name    = "instance-group-manager"
   zone    = "us-central1-f"
-  project = "hnmxcjmmxcqwncva"
+  project = "yevaysmksiiywuxn"
   version {
     instance_template = google_compute_instance_template.compute-engine.self_link
     name              = "primary"
@@ -132,7 +133,6 @@ data "google_compute_image" "centos_7" {
   family  = "centos-7"
   project = "centos-cloud"
 }
-
 ```
 - _LB_ (Load Balancer)
 #### Usage
@@ -160,26 +160,29 @@ resource "google_sql_database_instance" "wordpress-db3" {
   name                = "wordpress-db3-instance"
   database_version    = "MYSQL_5_7"
   region              = "us-central1"
+  root_password       = var.db_password
   deletion_protection = "false"
+  project             = var.project_name
+
   settings {
     tier = "db-f1-micro"
   }
 }
-
 # cretes user
 resource "google_sql_user" "users" {
   name     = "wordpress-db3-user"
   instance = google_sql_database_instance.wordpress-db3.name
-  host     = "localhost"
+  host     = "%"
   password = "changeme"
+
 }
 #creates database
 resource "google_sql_database" "wordpress" {
   name     = "wordpress-db3-database"
   instance = google_sql_database_instance.wordpress-db3.name
 }
-
 ```
+
 
 
 
