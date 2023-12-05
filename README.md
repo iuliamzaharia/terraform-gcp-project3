@@ -182,7 +182,7 @@ resource "google_sql_database" "wordpress" {
   instance = google_sql_database_instance.wordpress-db3.name
 }
 ```
-
+_The CloudSQL was created to be used with wordpress autoscaling group. (An sh. file has been created for that)._
 
 
 
